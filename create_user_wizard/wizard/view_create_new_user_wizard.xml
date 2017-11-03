@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <openerp>
+        <data>
+             <record id="view_create_new_user_wizard_form" model="ir.ui.view">
+                <field name="name">view.create.new.user.wizard.form</field>
+                <field name="model">create.new.user.wizard</field>
+                <field name="arch" type="xml">
+                    <form string="Create User Wizard">
+                        <separator/>
+                        <sheet>
+		                     <group>
+		                         <field name="client_id"/>
+		                         <field name="first_name"/>
+		                         <field name="last_name"/>
+		                         <field name="email"/>
+		                         <field name="groups_ids" widget="selection" domain="[('category_id.name','=', 'User Type')]"/>
+		                         <field name="login"/>
+		                         <field name="password" password="True"/>
+		                         <field name="confirm_password" password="True" attrs="{'required':[('password','!=',False)], 'invisible':[('password','=', False)]}"/>
+		                     	 <field name="is_user_settings"/>
+		                     </group>
+	                     </sheet>
+                        <footer>
+                            <button name="button_create" string="Create" type="object" class="oe_highlight"/>
+                            or
+                            <button string="Cancel" class="oe_link" special="cancel"/>
+                        </footer>
+                    </form>
+                </field>
+            </record>
+
+            <record id="create_new_user_wizard_action" model="ir.actions.act_window">
+                <field name="name">Create User Wizard</field>
+                <field name="res_model">create.new.user.wizard</field>
+                <field name="view_type">form</field>
+                <field name="view_mode">form</field>
+                <field name="target">new</field>
+            </record>
+
+            <menuitem id="menu_create_new_user_wizard_action" name="Create User Wizard" parent="base.menu_users" sequence="10" action="create_new_user_wizard_action"/>
+        </data>
+ </openerp>
+
