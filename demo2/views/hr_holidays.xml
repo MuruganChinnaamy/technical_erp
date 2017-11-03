@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+ <openerp>
+    <data>
+        
+        <record id="edit_holiday_new_inherit" model="ir.ui.view">
+	        <field name="name">Leave Request Inherit</field>
+	        <field name="model">hr.holidays</field>
+	        <field name="type">form</field>
+	        <field name="inherit_id" ref="hr_holidays.edit_holiday_new"/>
+	        <field name="arch" type="xml">	
+	        <xpath expr="/form/header" position="replace">
+	        		<header>
+	        			<button string="Confirm" name="holidays_confirm" states="draft" type="object" class="oe_highlight"/>
+		        		
+	                    <button string="Approve" name="validate" states="confirm" type="workflow"  class="oe_highlight"/>
+	                    <button string="Validate" name="second_validate" states="validate1" type="workflow"  class="oe_highlight"/>
+	                    <button string="Refuse" name="refuse" states="confirm,validate1" type="workflow" />
+	                    <button string="Refuse" name="refuse" states="validate1,validate" type="workflow" />
+	                    <button string="Reset to Draft" name="reset" type="workflow"
+	                            attrs="{'invisible': ['|', ('can_reset', '=', False), ('state', 'not in', ['confirm', 'refuse'])]}"/>
+	                    <field name="state" widget="statusbar" statusbar_visible="draft,confirm,validate" statusbar_colors='{"confirm":"blue","validate1":"blue","refuse":"red"}'/>
+	        		</header>
+	        </xpath>          	
+	        			        	
+	        </field>
+	   </record>
+        
+        
+        
+        
+        
+    </data>
+ </openerp>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<openerp>
+    <data noupdate="0">
+        <!-- Payslip - Email Temaplate  -->
+        <record id="leave_email_template1" model="mail.template">
+            <field name="name">Leave request to manager </field>
+            <field name="subject">Leave Request from ${object.employee_id.name}</field>
+            <field name="email_from">${object.employee_id.work_email}</field>
+            <field name="email_to">${object.employee_id.parent_id.work_email}</field>
+            <!-- <field name="body_type" eval="qweb"/> -->
+            <field name="model_id" ref="demo2.model_hr_holidays"/>
+            <field name="report_template" ref="demo2.action_employee_leave1"/>
+            <field name="report_name">Leave Report</field>
+            <field name="auto_delete" eval="True"/>
+             <field name="body_html"><![CDATA[
+<div style="font-family: 'Lucica Grande', Ubuntu, Arial, Verdana, sans-serif; font-size: 12px; color: rgb(34, 34, 34); background-color: #FFF; ">
+   
+   <p>Dear ${object.employee_id.parent_id.name},</p>
+
+  
+<p>
+	You have one Leave Request from ${object.employee_id.name}. Kindly click the link below to validate the application form. Web: 		localhost:8069 or ipaddress:8069
+</p>
+
+   
+   <p>
+   Thank You.
+   </p>
+   
+
+  </div>
+            ]]></field>
+        </record>
+ 	</data>
+</openerp>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+<data>
+<template id="leave_report_employee">
+    <t t-call="report.html_container">
+ 		<t t-foreach="docs" t-as="o">
+            <t t-call="report.external_layout">
+            <div class="page">
+            			<div align="right">
+                          <span t-field="o.employee_id.image_medium" t-field-options="{&quot;widget&quot;: &quot;image&quot;, &quot;class&quot;: &quot;img-rounded&quot;}"/>
+                        </div>   
+                    <table class="table table-condensed table-bordered">
+                    	<tr>
+                    	
+                    	</tr>
+                        <tr>
+                            <td><strong>Employee Name</strong></td>
+                            <td colspan="3"><span t-field="o.employee_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Description</strong></td>
+                            <td colspan="3"><span t-field="o.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong> Leave Type </strong></td>
+                            <td colspan="3"><span t-field="o.holiday_status_id.name"/></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Duration </strong></td>
+                            <td colspan="3"><span t-field="o.date_from"/> - <span t-field="o.date_to"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="4"><strong> Comment by Manager </strong></td>
+                            
+                        </tr>
+                        <td colspan="4"><span t-field="o.report_note"/></td>
+                         
+                        
+                    </table>
+            </div>
+            </t>
+        </t>
+    </t>
+</template>
+</data>
+</openerp>

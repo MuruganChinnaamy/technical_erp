@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+       <report 
+             id="action_employee_leave1" 
+             model="hr.holidays" 
+             string="Print Employee Details"
+             report_type="qweb-pdf"
+             name="demo2.leave_report_employee" 
+             file="demo2.leave_report_employee"
+             
+         />
+    </data>
+</openerp>
