@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+        
+        <record id="view_order_form_id" model="ir.ui.view">
+            <field name="name">sale.order.form</field>
+            <field name="model">sale.order</field>
+            <field name="inherit_id" ref="sale.view_order_form"/>            
+            <field name="arch" type="xml">
+            	<xpath expr="//form/sheet/notebook/page[1]" position="after">
+            		<page string="Write Order Lines">
+            			<tree editable="bottom">
+            				<field name="copy_line"/>
+            			</tree>
+                	</page>
+            	</xpath>            
+           </field>
+       </record>
+       
+       <record id="view_copy_order_line_tree" model="ir.ui.view">
+            <field name="name">copy.order.line.tree</field>
+            <field name="model">copy.order.line</field>
+            <field name="arch" type="xml">
+                <tree string="Sales Order Lines" create="false">
+                    <field name="product_id"/>
+                    <field name="order_id"  invisible="1"/>
+                    <field name="order_partner_id"  invisible="1"/>
+                    <field name="name"/>
+                    <field name="salesman_id"  invisible="1"/>
+                    <field name="product_uom_qty" string="Ordered Qty"/>
+                     <field name="price_unit"
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="tax_id" widget="many2many_tags" domain="[('type_tax_use','=','sale'),('company_id','=',parent.company_id)]"
+                                        attrs="{'readonly': [('qty_invoiced', '&gt;', 0)]}"/>
+                    <field name="qty_delivered" />
+                    <field name="qty_invoiced"  />
+                    <field name="qty_to_invoice"  invisible="1"/>
+                    <field name="product_uom" string="Unit of Measure" groups="product.group_uom"/>
+                    <field name="price_subtotal" sum="Total" widget="monetary"/>
+                </tree>
+            </field>
+        </record>
+               
+        
+    </data>
+</openerp>
